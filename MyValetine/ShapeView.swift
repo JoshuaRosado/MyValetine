@@ -26,6 +26,19 @@ struct TheTriangle: View {
             .frame(width: 300, height: 125)
             .position(x: 150, y:65)
             .cornerRadius(20)
+        
+    }
+}
+
+struct OpenedTriangle: View {
+    var body: some View {
+        Triangle()
+            .fill(Color.pink).brightness(0.6)
+            .frame(width: 300, height: 130)
+            .position(x: 150, y:65)
+            .cornerRadius(20)
+            
+        
     }
 }
 
@@ -43,6 +56,7 @@ struct TheRectangle: View {
 
 struct ShapeView: View {
     @State private var isMessageOpen = false
+    @State private var rotation : Double = 0
     
     var body: some View {
         ZStack{
@@ -53,24 +67,41 @@ struct ShapeView: View {
             ZStack{
                 ZStack{
                     TheRectangle()
-                        
                     TheTriangle()
+                    
+                    
+                    if isMessageOpen {
+                        
+                        OpenedTriangle()
+                            .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: rotation))
+                            .position(x:150, y: -90)
+                            .animation(.easeInOut(duration: 20), value: rotation)
+                            
+                            
+                    } else {
+                        OpenedTriangle()
+                    }
+                        
+            
       
                 }
                 .frame(width: 300, height: 200)
                 
-                
                 Button("Open"){
                     isMessageOpen.toggle()
+                    withAnimation{
+                        rotation = 1
+                    }
+                    
                 }
                 .foregroundStyle(.white)
                 .font(.largeTitle).bold()
                 .padding(.top, 125)
             }
         }
-        .sheet(isPresented: $isMessageOpen){
-            OpenedMessage()
-        }
+//        .sheet(isPresented: $isMessageOpen){
+//            OpenedMessage()
+//        }
     }
 }
 
