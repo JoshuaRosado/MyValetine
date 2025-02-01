@@ -45,11 +45,12 @@ struct OpenedTriangle: View {
 struct TheRectangle: View {
     var body: some View {
         Rectangle()
-            .fill(Color.pink).brightness(0.4)
+            .fill(Color.pink).brightness(-0.3)
         
             .frame(width: 300, height: 200)
             .cornerRadius(20)
             .shadow(color:.black.opacity(0.2), radius: 5, x: 12, y: 15)
+            
     }
     
 }
@@ -60,9 +61,16 @@ struct ShapeView: View {
     
     var body: some View {
         ZStack{
-            Rectangle()
-                .fill(Color.red.opacity(0.1))
-                .ignoresSafeArea()
+            ZStack{
+                
+                RoundedRectangle(cornerRadius: 60)
+                    .stroke(Color.brown, lineWidth: 20).brightness(-0.4)
+                    .ignoresSafeArea()
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.red.opacity(0.1))
+                
+                    .ignoresSafeArea()
+            }
             
             ZStack{
                 ZStack{
@@ -76,6 +84,7 @@ struct ShapeView: View {
                             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: rotation))
                             .position(x:150, y: -90)
                             .animation(.easeInOut(duration: 20), value: rotation)
+                            .shadow(color:.black.opacity(0.2), radius: 10, x: 20, y: 15)
                             
                             
                     } else {
@@ -97,6 +106,7 @@ struct ShapeView: View {
                 .foregroundStyle(.white)
                 .font(.largeTitle).bold()
                 .padding(.top, 125)
+                .buttonStyle(.plain)
             }
         }
 //        .sheet(isPresented: $isMessageOpen){
