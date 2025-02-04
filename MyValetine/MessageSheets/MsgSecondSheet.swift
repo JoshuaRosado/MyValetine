@@ -8,36 +8,12 @@
 import SwiftUI
 
 struct MsgSecondSheet: View {
+    @State var message = "Valetine's day is almost here"
+    @State var isMsgThirdSheetPresented = false
+    @State var nextView = MsgThirdSheet()
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.red.opacity(0.1))
-                .ignoresSafeArea()
-            ZStack{
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white)
-                    .padding(20)
-                VStack(){
-                    Spacer()
-                    Text("I was thinking and wondering")
-                        .frame(width: 300)
-                    
-                    VStack{
-                        
-                            Button("Next"){
-                                
-                            }
-                        
-                        .padding(.bottom)
-                    }
-                    .frame(height: 350, alignment: .bottom)
-                }
-                .border(.red)
-                .padding(30)
-                
-                
-            }
-        }
+        CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgThirdSheetPresented)
+            
     }
 }
 

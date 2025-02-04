@@ -55,12 +55,13 @@ struct MainView: View {
                         
                         Button("Open"){
 
-                            withAnimation{
+                            withAnimation(Animation.linear(duration: 1.0)){
                                 isMessageOpen.toggle()
                                 shakeAnimationTrigger = false
                                 rotation = 1
                                 
                             }
+                            
                         }
                     
                     .foregroundStyle(.white)

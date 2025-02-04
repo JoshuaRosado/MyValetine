@@ -8,45 +8,19 @@
 import SwiftUI
 
 struct OpenedMessage: View {
-    @State private var isMsgSecondSheet = false
+    @State private var scale = 0.0
+    @State private var opacity = 0.0
+    @State private var message = "Hola preciosa!"
+    @State var nextView = MsgSecondSheet()
+    
+    @State private var isMsgSecondSheetPresented = false
+    
     var body: some View {
-        NavigationStack{
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.red.opacity(0.1))
-                    .ignoresSafeArea()
-                ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.white)
-                        .padding(20)
-                    VStack(){
-                        Spacer()
-                        Text("Hola preciosa!")
-                            .frame(width: 300)
-                        
-                        VStack{
-                        
-                                Button("Next"){
-                                    isMsgSecondSheet = true
-                                    
-                                
-                            }
-                            .padding(.bottom)
-                        }
-                        .frame(height: 350, alignment: .bottom)
-                    }
-                    .border(.red)
-                    .padding(30)
-                    
-                    
-                }
-            }
-            .sheet(isPresented: $isMsgSecondSheet){
-                MsgSecondSheet()
-            }
+        CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgSecondSheetPresented)
+            
         }
     }
-}
+
 
 #Preview {
     OpenedMessage()

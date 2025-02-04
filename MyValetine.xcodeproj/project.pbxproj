@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A202F4CC2D52B0B30036CF9F /* CustomizedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202F4CB2D52B0B30036CF9F /* CustomizedMessage.swift */; };
+		A202F4CE2D52B52D0036CF9F /* MsgThirdSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202F4CD2D52B52D0036CF9F /* MsgThirdSheet.swift */; };
+		A202F4D02D52BB320036CF9F /* MsgFinalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A202F4CF2D52BB320036CF9F /* MsgFinalSheet.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A202F4732D4AC66C0036CF9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +33,9 @@
 		A202F4622D4AC6690036CF9F /* MyValetine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyValetine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A202F4722D4AC66C0036CF9F /* MyValetineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyValetineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A202F47C2D4AC66C0036CF9F /* MyValetineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyValetineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A202F4CB2D52B0B30036CF9F /* CustomizedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedMessage.swift; sourceTree = "<group>"; };
+		A202F4CD2D52B52D0036CF9F /* MsgThirdSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgThirdSheet.swift; sourceTree = "<group>"; };
+		A202F4CF2D52BB320036CF9F /* MsgFinalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgFinalSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +84,9 @@
 		A202F4592D4AC6690036CF9F = {
 			isa = PBXGroup;
 			children = (
+				A202F4CF2D52BB320036CF9F /* MsgFinalSheet.swift */,
+				A202F4CD2D52B52D0036CF9F /* MsgThirdSheet.swift */,
+				A202F4CB2D52B0B30036CF9F /* CustomizedMessage.swift */,
 				A202F4642D4AC6690036CF9F /* MyValetine */,
 				A202F4752D4AC66C0036CF9F /* MyValetineTests */,
 				A202F47F2D4AC66C0036CF9F /* MyValetineUITests */,
@@ -236,6 +248,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A202F4D02D52BB320036CF9F /* MsgFinalSheet.swift in Sources */,
+				A202F4CC2D52B0B30036CF9F /* CustomizedMessage.swift in Sources */,
+				A202F4CE2D52B52D0036CF9F /* MsgThirdSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
