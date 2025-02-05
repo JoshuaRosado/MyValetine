@@ -52,15 +52,18 @@ struct MainView: View {
                     }
                     .frame(width: 300, height: 200)
                     
-                        
+                    NavigationLink {
+                        OpenedMessage()
+                    } label: {
                         Button("Open"){
-
+                            
                             withAnimation(Animation.linear(duration: 1.0)){
                                 isMessageOpen.toggle()
                                 shakeAnimationTrigger = false
                                 rotation = 1
                                 
                             }
+                        }
                             
                         }
                     
@@ -80,10 +83,13 @@ struct MainView: View {
                     startShaking()
                 }
             }
+            .fullScreenCover(isPresented: $isMessageOpen){
+                OpenedMessage()
+            }
             
-                    .sheet(isPresented: $isMessageOpen){
-                        OpenedMessage()
-                    }
+//                    .sheet(isPresented: $isMessageOpen){
+//                        OpenedMessage()
+//                    }
         }
     }
     

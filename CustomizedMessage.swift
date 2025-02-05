@@ -31,7 +31,7 @@ struct CustomizedMessage: View {
                     VStack{
                     
                             Button("Next"){
-                                isMsgVisible.toggle()
+                                isMsgVisible = true
                                 print(isMsgVisible)
                                 
                             
@@ -54,9 +54,7 @@ struct CustomizedMessage: View {
             }
         }
         
-        .sheet(isPresented: $isMsgVisible){
-            MsgSecondSheet()
-        }
+        
     }
 }
 

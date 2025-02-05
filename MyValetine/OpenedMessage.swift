@@ -16,9 +16,17 @@ struct OpenedMessage: View {
     @State private var isMsgSecondSheetPresented = false
     
     var body: some View {
-        CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgSecondSheetPresented)
             
-        }
+            
+            CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgSecondSheetPresented)
+                .sheet(isPresented: $isMsgSecondSheetPresented){
+                    MsgSecondSheet()
+                }
+        
+    }
+
+    
+        
     }
 
 

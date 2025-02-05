@@ -12,9 +12,9 @@ struct MsgSecondSheet: View {
     @State var isMsgThirdSheetPresented = false
     @State var nextView = MsgThirdSheet()
     var body: some View {
-        CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgThirdSheetPresented)
-            
+            CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgThirdSheetPresented)     
     }
+    
 }
 
 #Preview {
