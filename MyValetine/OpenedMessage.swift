@@ -8,26 +8,55 @@
 import SwiftUI
 
 struct OpenedMessage: View {
-    @State private var scale = 0.0
-    @State private var opacity = 0.0
-    @State private var message = "Hola preciosa!"
-    @State var nextView = MsgSecondSheet()
-    
-    @State private var isMsgSecondSheetPresented = false
-    
+    @State var message = "Hola Preciosa"
+    @State var isMsgVisible = false
+    @State var scale = 0.0
+    @State var opacity = 0.0
     var body: some View {
-            
-            
-            CustomizedMessage(view: nextView, message: message, isMsgVisible: isMsgSecondSheetPresented)
-                .sheet(isPresented: $isMsgSecondSheetPresented){
-                    MsgSecondSheet()
+        NavigationStack{
+            ZStack {
+                MsgBackgroundView()
+                    VStack{
+                        Spacer()
+                        Text(message)
+                            .frame(width: 300)
+                        
+                        VStack{
+                            NavigationLink{
+                                MsgSecondSheet()
+                            }label: {
+                                
+                                Button("Next"){
+                                    isMsgVisible = true
+                                    print(isMsgVisible)
+                                    
+                                }
+                            }
+                            .padding(.bottom)
+                        }
+                        .frame(height: 350, alignment: .bottom)
+                    }
+                    .padding(30)
+                    
+                    
                 }
+            }
+        .scaleEffect(y:scale, anchor: .center)
+            .opacity(opacity)
+            .onAppear{
+                withAnimation(.easeInOut(duration: 1)){
+                    scale = 1.0
+                    opacity = 1.0
+                }
+            }
+            .fullScreenCover(isPresented: $isMsgVisible){
+                MsgSecondSheet()
+            }
+        }
         
     }
 
-    
-        
-    }
+
 
 
 #Preview {

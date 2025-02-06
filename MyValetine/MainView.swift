@@ -55,7 +55,7 @@ struct MainView: View {
                     NavigationLink {
                         OpenedMessage()
                     } label: {
-                        Button("Open"){
+                        Button("Open"){ 
                             
                             withAnimation(Animation.linear(duration: 1.0)){
                                 isMessageOpen.toggle()
@@ -87,9 +87,6 @@ struct MainView: View {
                 OpenedMessage()
             }
             
-//                    .sheet(isPresented: $isMessageOpen){
-//                        OpenedMessage()
-//                    }
         }
     }
     
