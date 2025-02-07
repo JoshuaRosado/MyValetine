@@ -10,8 +10,6 @@ import SwiftUI
 struct OpenedMessage: View {
     @State var message = "Hola Preciosa"
     @State var isMsgVisible = false
-    @State var scale = 0.0
-    @State var opacity = 0.0
     var body: some View {
         NavigationStack{
             ZStack {
@@ -41,20 +39,17 @@ struct OpenedMessage: View {
                     
                 }
             }
-        .scaleEffect(y:scale, anchor: .center)
-            .opacity(opacity)
-            .onAppear{
-                withAnimation(.easeInOut(duration: 1)){
-                    scale = 1.0
-                    opacity = 1.0
-                }
-            }
+        
+    
             .fullScreenCover(isPresented: $isMsgVisible){
                 MsgSecondSheet()
             }
         }
+    
+    
         
     }
+
 
 
 

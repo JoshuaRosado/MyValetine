@@ -8,14 +8,13 @@ import SwiftUI
 
 struct MainView: View {
     @State private var isMessageOpen = false
-    @State private var isNavigating = false
-    @State private var shakeOffsetX: CGFloat = 0
-    @State private var shakeOffsetY: CGFloat = 0
+    @State private var shakeOffsetX: CGFloat = 400
+    @State private var shakeOffsetY: CGFloat = 0.0
     @State private var rotation : Double = 0
     @State private var shakeAnimationTrigger = true
 
     
-    let shakeDuration: Double = 0.2
+    let shakeDuration: Double = 0.3
     let shakeInterval: Double = 2.0
     
     
@@ -35,7 +34,7 @@ struct MainView: View {
                         
                         
                         if isMessageOpen {
-                            
+                              
                             RotatingTriangle()
                                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 0, z: rotation))
                                 .position(x:150, y: -88)
@@ -55,16 +54,18 @@ struct MainView: View {
                     NavigationLink {
                         OpenedMessage()
                     } label: {
-                        Button("Open"){ 
+                        Button("Open"){
                             
-                            withAnimation(Animation.linear(duration: 1.0)){
+                            
+                            withAnimation(Animation.linear(duration: 0.1)){
                                 isMessageOpen.toggle()
                                 shakeAnimationTrigger = false
                                 rotation = 1
                                 
                             }
-                        }
                             
+                        }
+                       
                         }
                     
                     .foregroundStyle(.white)
@@ -76,7 +77,7 @@ struct MainView: View {
                 }
                 .offset(x: shakeOffsetX, y:shakeOffsetY)
                 .animation(
-                    Animation.linear(duration: shakeDuration),
+                    Animation.bouncy(duration: 0.6, extraBounce: 0.3),
                     value: shakeAnimationTrigger
                 )
                 .onAppear(){
@@ -84,7 +85,9 @@ struct MainView: View {
                 }
             }
             .fullScreenCover(isPresented: $isMessageOpen){
+                            
                 OpenedMessage()
+                    
             }
             
         }
@@ -96,14 +99,14 @@ struct MainView: View {
         Timer.scheduledTimer(withTimeInterval: shakeInterval, repeats:true) { _ in
             shakeAnimationTrigger.toggle()
             withAnimation {
-                shakeOffsetX = 1.5
-                shakeOffsetY = 15
+                shakeOffsetX = 0.0
+                shakeOffsetY = 0.0
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + shakeDuration ) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4 ) {
                 withAnimation{
-                    shakeOffsetX = 0
-                    shakeOffsetY = 0
+
+                    shakeOffsetY = -10.0
                 }
             }
             
