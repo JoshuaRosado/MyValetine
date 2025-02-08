@@ -8,6 +8,7 @@ import SwiftUI
 
 struct MainView: View {
     @State private var isMessageOpen = false
+    @State private var isShowingNextView = false
     @State private var shakeOffsetX: CGFloat = 400
     @State private var shakeOffsetY: CGFloat = 0.0
     @State private var rotation : Double = 0
@@ -55,15 +56,18 @@ struct MainView: View {
                         OpenedMessage()
                     } label: {
                         Button("Open"){
-                            
-                            
                             withAnimation(Animation.linear(duration: 0.1)){
                                 isMessageOpen.toggle()
-                                shakeAnimationTrigger = false
                                 rotation = 1
+                                shakeAnimationTrigger = false
                                 
                             }
                             
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+                                
+                                isShowingNextView.toggle()
+                            }
                         }
                        
                         }
@@ -73,7 +77,7 @@ struct MainView: View {
                     .padding(.top, 125)
                     .buttonStyle(.plain)
                     
-                    
+                     
                 }
                 .offset(x: shakeOffsetX, y:shakeOffsetY)
                 .animation(
@@ -84,11 +88,10 @@ struct MainView: View {
                     startShaking()
                 }
             }
-            .fullScreenCover(isPresented: $isMessageOpen){
-                            
-                OpenedMessage()
+            .fullScreenCover(isPresented: $isShowingNextView, content: OpenedMessage.init)
+                
                     
-            }
+            
             
         }
     }
