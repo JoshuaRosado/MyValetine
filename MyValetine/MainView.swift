@@ -31,7 +31,10 @@ struct MainView: View {
                 ZStack{
                     ZStack{
                         TheRectangle()
-                        TheTriangle()
+                        ZStack{
+                            TheTriangle()
+                            LetterInside()
+                        }
                         
                         
                         if isMessageOpen {
