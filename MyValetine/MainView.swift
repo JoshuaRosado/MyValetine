@@ -18,14 +18,14 @@ struct MainView: View {
     let shakeDuration: Double = 0.3
     let shakeInterval: Double = 2.0
     
-    
+     
     
     
     var body: some View {
         NavigationStack{
             ZStack{
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.red.opacity(0.1))
+                    .fill(Color("bgColor"))
                     .ignoresSafeArea()
                 
                 ZStack{
@@ -35,7 +35,7 @@ struct MainView: View {
                             TheTriangle()
                             LetterInside()
                         }
-                        
+                         
                         
                         if isMessageOpen {
                               
@@ -72,6 +72,7 @@ struct MainView: View {
                                 isShowingNextView.toggle()
                             }
                         }
+                        .buttonStyle(.plain)
                        
                         }
                     

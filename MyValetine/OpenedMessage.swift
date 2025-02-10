@@ -32,8 +32,8 @@ struct OpenedMessage: View {
                 MsgBackgroundView()
                     VStack{
                         Spacer()
-                        Text(message)
-                            .messageStyle()
+                        TypingAnimationView(textToType: message)
+                            
                         
                         VStack{
                             NavigationLink{
@@ -42,10 +42,14 @@ struct OpenedMessage: View {
                                 
                                 Button("Next"){
                                     isMsgVisible = true
-                                    print(isMsgVisible)
                                     
                                 }
+                                .font(.system(size: 20, weight: .medium, design: .default))
+                                .foregroundStyle(.secondary).opacity(0.5)
+                                .buttonStyle(.plain)
+                                
                             }
+                            .buttonStyle(.plain)
                             .padding(.bottom)
                         }
                         .frame(height: 350, alignment: .bottom)
