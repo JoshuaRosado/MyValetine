@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+enum Screens {
+    case viewA
+    case viewB
+}
+
 struct MsgTemplateView: View {
     @State var message: String
     @State var isMsgVisible: Bool
     @State var nextViewIndex: Int
-    @State var views = [MsgSecondSheet(), MsgSecondSheet()]
+    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet())]
     var body: some View {
         
         ZStack {
@@ -23,7 +28,7 @@ struct MsgTemplateView: View {
                     
                     VStack{
                         NavigationLink{
-                            views[0]
+                            arrayOfViews[nextViewIndex]
                         }label: {
                             Text("Next")
                                 .opacity(0.8)
@@ -48,7 +53,7 @@ struct MsgTemplateView: View {
                 
                 
             } .fullScreenCover(isPresented: $isMsgVisible){
-                views[nextViewIndex]
+                arrayOfViews[nextViewIndex]
             }
         }
     }

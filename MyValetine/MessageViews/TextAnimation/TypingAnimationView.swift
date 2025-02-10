@@ -17,6 +17,8 @@ struct TypingAnimationView: View {
         VStack {
             Text(animatedText)
                 .messageStyle()
+            Image(systemName: "heart")
+                .messageStyle()
 
         }
         .onAppear {

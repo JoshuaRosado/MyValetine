@@ -18,10 +18,10 @@ struct MainView: View {
     let shakeDuration: Double = 0.3
     let shakeInterval: Double = 2.0
     
-     
     
     
-    var body: some View { 
+    
+    var body: some View {
         NavigationStack{
             ZStack{
                 RoundedRectangle(cornerRadius: 20)
@@ -35,7 +35,7 @@ struct MainView: View {
                             TheTriangle()
                             LetterInside()
                         }
-                         
+                        
                         
                         if isMessageOpen {
                               
