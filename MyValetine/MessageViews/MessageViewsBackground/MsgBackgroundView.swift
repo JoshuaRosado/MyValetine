@@ -13,12 +13,7 @@ struct MsgBackgroundView: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("oldPaper"))
                 .ignoresSafeArea()
-//            ZStack{
-//                RoundedRectangle(cornerRadius: 20)
-//                    .fill(Color.white)
-//                    .padding(25)
-//                    .shadow(color:.black.opacity(0.2), radius: 10, x: 15, y: 10)
-//            }
+
         }
         
     }

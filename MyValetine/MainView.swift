@@ -21,7 +21,7 @@ struct MainView: View {
      
     
     
-    var body: some View {
+    var body: some View { 
         NavigationStack{
             ZStack{
                 RoundedRectangle(cornerRadius: 20)

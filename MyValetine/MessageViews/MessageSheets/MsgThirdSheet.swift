@@ -13,7 +13,9 @@ struct MsgThirdSheet: View {
     @State var nextViewIndex = 2
     
     var body: some View {
-        Text(message)
+        NavigationStack{
+            Text(message)
+        }
             
     }
 }

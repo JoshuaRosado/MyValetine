@@ -13,6 +13,7 @@ struct MsgTemplateView: View {
     @State var nextViewIndex: Int
     @State var views = [MsgSecondSheet(), MsgSecondSheet()]
     var body: some View {
+        
         ZStack {
             MsgBackgroundView()
                 VStack{
@@ -24,16 +25,20 @@ struct MsgTemplateView: View {
                         NavigationLink{
                             views[0]
                         }label: {
-                            
-                            Button("Next"){
+                            Text("Next")
+                                .opacity(0.8)
+                                .font(.system(size: 20, weight: .medium, design: .default))
+                                .foregroundStyle(.secondary)
+                            Button(""){
+                                
                                 isMsgVisible = true
                                 
                             }
-                            .font(.system(size: 20, weight: .medium, design: .default))
-                            .foregroundStyle(.secondary).opacity(0.5)
+                            
                             .buttonStyle(.plain)
                             
                         }
+                        
                         .buttonStyle(.plain)
                         .padding(.bottom)
                     }
@@ -42,6 +47,8 @@ struct MsgTemplateView: View {
                 .padding(30)
                 
                 
+            } .fullScreenCover(isPresented: $isMsgVisible){
+                views[nextViewIndex]
             }
         }
     }

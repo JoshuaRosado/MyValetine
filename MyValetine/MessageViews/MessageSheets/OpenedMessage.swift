@@ -30,10 +30,7 @@ struct OpenedMessage: View {
     var body: some View {
         NavigationStack{
             MsgTemplateView(message: message, isMsgVisible: isMsgVisible, nextViewIndex: nextViewIndex)
-            
-         .fullScreenCover(isPresented: $isMsgVisible){
-                    MsgSecondSheet()
-                }
+                   
         }
         
         
