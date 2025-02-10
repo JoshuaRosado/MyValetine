@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
-
+//
 struct MsgSecondSheet: View {
     @State var message = "Valetine's day is almost here"
-    @State var isMsgThirdSheetPresented = false
+    @State var isMsgVisible = false
+    @State var nextViewIndex = 1
 
     var body: some View {
-        VStack{
-            Text("hi")
-        }
+        MsgTemplateView(message: message, isMsgVisible: isMsgVisible, nextViewIndex: nextViewIndex)
+        
+            .fullScreenCover(isPresented: isMsgVisible){
+                MsgThirdSheet()
     }
+        
     
 }
 

@@ -26,53 +26,23 @@ extension View {
 struct OpenedMessage: View {
     @State var message = "Hola Preciosa!"
     @State var isMsgVisible = false
+    @State var nextViewIndex = 0
     var body: some View {
         NavigationStack{
-            ZStack {
-                MsgBackgroundView()
-                    VStack{
-                        Spacer()
-                        TypingAnimationView(textToType: message)
-                            
-                        
-                        VStack{
-                            NavigationLink{
-                                MsgSecondSheet()
-                            }label: {
-                                
-                                Button("Next"){
-                                    isMsgVisible = true
-                                    
-                                }
-                                .font(.system(size: 20, weight: .medium, design: .default))
-                                .foregroundStyle(.secondary).opacity(0.5)
-                                .buttonStyle(.plain)
-                                
-                            }
-                            .buttonStyle(.plain)
-                            .padding(.bottom)
-                        }
-                        .frame(height: 350, alignment: .bottom)
-                    }
-                    .padding(30)
-                    
-                    
+            MsgTemplateView(message: message, isMsgVisible: isMsgVisible, nextViewIndex: nextViewIndex)
+            
+         .fullScreenCover(isPresented: $isMsgVisible){
+                    MsgSecondSheet()
                 }
-            }
-        
-    
-            .fullScreenCover(isPresented: $isMsgVisible){
-                MsgSecondSheet()
-            }
         }
-    
-    
+        
+        
         
     }
-
-
-
-
+    
+    
+    
+}
 
 #Preview {
     OpenedMessage()
