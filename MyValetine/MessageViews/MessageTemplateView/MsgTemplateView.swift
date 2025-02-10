@@ -7,16 +7,12 @@
 
 import SwiftUI
 
-enum Screens {
-    case viewA
-    case viewB
-}
 
 struct MsgTemplateView: View {
     @State var message: String
     @State var isMsgVisible: Bool
     @State var nextViewIndex: Int
-    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet())]
+    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet())]
     var body: some View {
         
         ZStack {
@@ -24,7 +20,16 @@ struct MsgTemplateView: View {
                 VStack{
                     Spacer()
                     TypingAnimationView(textToType: message)
+                        .padding(.top,30)
+                        .padding(.horizontal, 25)
+                    
+                    if nextViewIndex == 3{
+                        HStack{
+                            Text("Question")
+                        }
                         
+                        
+                    }
                     
                     VStack{
                         NavigationLink{

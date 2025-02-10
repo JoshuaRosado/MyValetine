@@ -1,26 +1,27 @@
 //
-//  MsgThirdSheet.swift
+//  MsgFourthSheet.swift
 //  MyValetine
 //
-//  Created by Joshua Rosado Olivencia on 2/4/25.
+//  Created by Joshua Rosado Olivencia on 2/10/25.
 //
 
 import SwiftUI
 
-struct MsgThirdSheet: View {
-    @State var message = "and I was wondering..."
+struct MsgFourthSheet: View {
+    @State var message = "Will you be my Valentine?"
+    @State var nextViewIndex = 1
     @State var isMsgVisible = false
-    @State var nextViewIndex = 2
     
     var body: some View {
         NavigationStack{
             MsgTemplateView(message: message, isMsgVisible: isMsgVisible, nextViewIndex: nextViewIndex)
         }
         .navigationBarBackButtonHidden()
-            
     }
 }
 
-#Preview {
-    MsgThirdSheet()
+
+
+#Preview{
+    MsgFourthSheet()
 }

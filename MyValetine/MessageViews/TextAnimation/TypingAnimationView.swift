@@ -15,8 +15,10 @@ struct TypingAnimationView: View {
 
     var body: some View {
         VStack {
+            Spacer()
             Text(animatedText)
                 .messageStyle()
+                .padding()
             Image(systemName: "heart")
                 .messageStyle()
 
