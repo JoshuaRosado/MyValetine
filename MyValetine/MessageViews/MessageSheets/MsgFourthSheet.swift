@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MsgFourthSheet: View {
     @State var message = "Will you be my Valentine?"
-    @State var nextViewIndex = 1
+    @State var nextViewIndex = 3
     @State var isMsgVisible = false
     
     var body: some View {

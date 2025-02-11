@@ -11,11 +11,14 @@ import SwiftUI
 
 struct TypingAnimationView: View {
     let textToType : String
+    @State var nextViewIndex: Int
     @State private var animatedText: String = ""
 
     var body: some View {
         VStack {
-            Spacer()
+            if nextViewIndex != 3 {
+                Spacer()
+            }
             Text(animatedText)
                 .messageStyle()
                 .padding()
@@ -41,5 +44,5 @@ struct TypingAnimationView: View {
 }
 
 #Preview {
-    TypingAnimationView(textToType: "Hello World")
+    TypingAnimationView(textToType: "Hello World", nextViewIndex: 2)
 }

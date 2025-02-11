@@ -12,51 +12,71 @@ struct MsgTemplateView: View {
     @State var message: String
     @State var isMsgVisible: Bool
     @State var nextViewIndex: Int
-    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet())]
+    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet()), AnyView(MsgFinalSheet())]
     var body: some View {
         
         ZStack {
-            MsgBackgroundView()
+            if nextViewIndex == 3{
+                FlowerMsgBackgroundView()
+            } else {
+                MsgBackgroundView()
+            }
                 VStack{
                     Spacer()
-                    TypingAnimationView(textToType: message)
+                    TypingAnimationView(textToType: message, nextViewIndex: nextViewIndex)
                         .padding(.top,30)
                         .padding(.horizontal, 25)
                     
                     if nextViewIndex == 3{
+                        Spacer()
                         HStack{
-                            Text("Question")
+                            Button(){
+                                print("Yes")
+                            } label: {
+                                Label("Yes", systemImage: "heartbroken")
+                            }
+                            Button("No"){
+                                print("No")
+                            }
                         }
                         
                         
                     }
-                    
-                    VStack{
-                        NavigationLink{
-                            arrayOfViews[nextViewIndex]
-                        }label: {
-                            Text("Next")
-                                .opacity(0.8)
-                                .font(.system(size: 20, weight: .medium, design: .default))
-                                .foregroundStyle(.secondary)
-                            Button(""){
+                    if nextViewIndex == 3{
+                        Spacer()
+                    } else {
+                        
+                        
+                        
+                        VStack{
+                            NavigationLink{
+                                arrayOfViews[nextViewIndex]
+                            }label: {
+                                Text("Next")
+                                    .opacity(0.8)
+                                    .font(.system(size: 20, weight: .medium, design: .default))
+                                    .foregroundStyle(.secondary)
+                                Button(""){
+                                    
+                                    isMsgVisible = true
+                                    
+                                }
                                 
-                                isMsgVisible = true
+                                .buttonStyle(.plain)
                                 
                             }
                             
                             .buttonStyle(.plain)
-                            
+                            .padding(.bottom, 25)
                         }
                         
-                        .buttonStyle(.plain)
-                        .padding(.bottom)
+                        .frame(height: 350, alignment: .bottom)
                     }
-                    .frame(height: 350, alignment: .bottom)
                 }
                 .padding(30)
+                .padding(.top, 45)
                 
-                
+            
             } .fullScreenCover(isPresented: $isMsgVisible){
                 arrayOfViews[nextViewIndex]
             }
