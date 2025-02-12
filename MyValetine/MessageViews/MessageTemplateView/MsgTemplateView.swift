@@ -10,14 +10,19 @@ import SwiftUI
 
 struct MsgTemplateView: View {
     @State var message: String
+    @State var noResponse = "WFT?"
     @State var isMsgVisible: Bool
     @State var nextViewIndex: Int
+    @State var answerIsYes = false
+    @State var answerIsNo = false
     internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet()), AnyView(MsgFinalSheet())]
     var body: some View {
         
         ZStack {
             if nextViewIndex == 3{
-                FlowerMsgBackgroundView()
+                if !answerIsNo{
+                    FlowerMsgBackgroundView()
+                }
             } else {
                 MsgBackgroundView()
             }
@@ -30,14 +35,50 @@ struct MsgTemplateView: View {
                     if nextViewIndex == 3{
                         Spacer()
                         HStack{
-                            Button(){
-                                print("Yes")
-                            } label: {
-                                Label("Yes", systemImage: "heartbroken")
+                            if !answerIsNo{
+                                Button(){
+                                    
+                                    withAnimation{
+                                        answerIsYes.toggle()
+                                    }
+                                } label: {
+                                    Label("Yes", systemImage: answerIsYes ? "heart.fill" :"square" )
+                                }
+                                .sensoryFeedback(.success, trigger: answerIsYes)
+                                .symbolEffect(.bounce, options: .speed(4).repeat(.periodic(6, delay: 0.6)), value: answerIsYes)
+                                .font(.system(size: 40, weight: .semibold, design: .default))
+                                .foregroundStyle(answerIsYes ? Color("pinkInside") : .secondary.opacity(0.8))
+                                
+                                
+                                .contentTransition(.symbolEffect(.replace))
+                                
                             }
-                            Button("No"){
-                                print("No")
+                            if !answerIsYes{
+                                Button(){
+                                    withAnimation{
+                                        answerIsNo.toggle()
+                                    }
+                                }  label: {
+                                    if answerIsNo{
+                                        VStack{
+                                            Label("No", systemImage: "checkmark.square")
+                                            Label(noResponse , systemImage:  "heart.slash.fill" )
+                                            
+                                        }
+                                    } else {
+                                        Label("No", systemImage: "square")
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                                .sensoryFeedback(.decrease, trigger: answerIsNo)
+                                .font(.system(size: (answerIsNo ? 85 : 40), weight: .semibold, design: .default))
+                                .foregroundStyle(answerIsNo ? .red : .secondary.opacity(0.8))
+                                
+                                
+                                .contentTransition(.symbolEffect(.replace))
+                                
                             }
+                            
                         }
                         
                         
@@ -77,7 +118,9 @@ struct MsgTemplateView: View {
                 .padding(.top, 45)
                 
             
-            } .fullScreenCover(isPresented: $isMsgVisible){
+            }
+        .fullScreenCover(isPresented: $isMsgVisible){
+            
                 arrayOfViews[nextViewIndex]
             }
         }
