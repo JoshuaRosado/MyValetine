@@ -15,6 +15,7 @@ struct MsgTemplateView: View {
     @State var nextViewIndex: Int
     @State var answerIsYes = false
     @State var answerIsNo = false
+    @State var showEndMessage = false
     internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet()), AnyView(MsgFinalSheet())]
     var body: some View {
         
@@ -22,6 +23,9 @@ struct MsgTemplateView: View {
             if nextViewIndex == 3{
                 if !answerIsNo{
                     FlowerMsgBackgroundView()
+                } else if answerIsNo{
+                    NoAswerBackground()
+                    
                 }
             } else {
                 MsgBackgroundView()
@@ -31,6 +35,7 @@ struct MsgTemplateView: View {
                     TypingAnimationView(textToType: message, nextViewIndex: nextViewIndex)
                         .padding(.top,30)
                         .padding(.horizontal, 25)
+                        .messageStyle()
                     
                     if nextViewIndex == 3{
                         Spacer()
@@ -62,16 +67,17 @@ struct MsgTemplateView: View {
                                     if answerIsNo{
                                         VStack{
                                             Label("No", systemImage: "checkmark.square")
-                                            Label(noResponse , systemImage:  "heart.slash.fill" )
+                                            Label("", systemImage:  "heart.slash.fill" )
                                             
                                         }
                                     } else {
                                         Label("No", systemImage: "square")
                                     }
                                 }
+                                . padding(.bottom, answerIsNo ? 50: 0)
                                 .buttonStyle(.plain)
                                 .sensoryFeedback(.decrease, trigger: answerIsNo)
-                                .font(.system(size: (answerIsNo ? 85 : 40), weight: .semibold, design: .default))
+                                .font(.system(size: (answerIsNo ? 45 : 40), weight: .semibold, design: .default))
                                 .foregroundStyle(answerIsNo ? .red : .secondary.opacity(0.8))
                                 
                                 
@@ -81,7 +87,17 @@ struct MsgTemplateView: View {
                             
                         }
                         
-                        
+                        if answerIsYes {
+                            Button("Read this"){
+                                showEndMessage.toggle()
+                            }
+                            .padding(.top,25)
+                            .opacity(0.8)
+                            .font(.system(size: 20, weight: .medium, design: .default))
+                            .foregroundStyle(Color("bgColor"))
+                            .buttonStyle(.plain)
+                        }
+                            
                     }
                     if nextViewIndex == 3{
                         Spacer()
@@ -119,6 +135,9 @@ struct MsgTemplateView: View {
                 
             
             }
+        .sheet(isPresented: $showEndMessage){
+            AnswerIsYesView()
+        }
         .fullScreenCover(isPresented: $isMsgVisible){
             
                 arrayOfViews[nextViewIndex]

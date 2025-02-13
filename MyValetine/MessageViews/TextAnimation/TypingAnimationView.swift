@@ -20,7 +20,7 @@ struct TypingAnimationView: View {
                 Spacer()
             }
             Text(animatedText)
-                .messageStyle()
+                
                 .padding()
             Image(systemName: "heart")
                 .messageStyle()
