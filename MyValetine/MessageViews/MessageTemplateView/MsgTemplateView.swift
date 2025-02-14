@@ -16,7 +16,7 @@ struct MsgTemplateView: View {
     @State var answerIsYes = false
     @State var answerIsNo = false
     @State var showEndMessage = false
-    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet()), AnyView(MsgFinalSheet())]
+    internal let arrayOfViews : [AnyView] = [AnyView(MsgSecondSheet()), AnyView(MsgThirdSheet()), AnyView(MsgFourthSheet())]
     var body: some View {
         
         ZStack {
